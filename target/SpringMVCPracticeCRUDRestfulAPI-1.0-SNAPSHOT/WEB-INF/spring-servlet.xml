@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
+  
+    <!-- Provide support for component scanning -->  
+    <context:component-scan base-package="com.mycompany.springmvcpracticecrudrestfulapi, com.mycompany.exceptions" />
+  
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/jsp/"></property>  
+        <property name="suffix" value=".jsp"></property>          
+    </bean>  
+    
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!-- resources contain static pages such as js, css and images -->
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/home"/>
+            <bean id="basicInterceptor" class="com.mycompany.interceptors.BasicInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">    
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>    
+        <property name="url" value="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=CONVERT_TO_NULL"></property>    
+        <property name="username" value="root"></property>    
+        <property name="password" value="root"></property>    
+    </bean>    
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">    
+        <property name="dataSource" ref="dataSource"></property>    <!-- ref id can be used -->
+    </bean>    
+
+    <bean id="studentDAO" class="com.mycompany.springmvcpracticecrudrestfulapi.StudentDAO">    
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>  <!-- ref id can be used -->
+    </bean>
+ 
+    <bean id="taskDAO" class="com.mycompany.springmvcpracticecrudrestfulapi.TaskDAO">    
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>  <!-- ref id can be used -->
+    </bean>
+ 
+    <mvc:annotation-driven />
+    
+</beans>  
