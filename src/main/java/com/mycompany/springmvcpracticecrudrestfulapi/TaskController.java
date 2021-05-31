@@ -5,6 +5,7 @@
  */
 package com.mycompany.springmvcpracticecrudrestfulapi;
 
+import com.mycompany.model.StudentDetails;
 import com.mycompany.model.Task;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,23 +24,28 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class TeacherTaskController {
+public class TaskController {
     
     @Autowired
     private TaskDAO taskDAO;
     
-    @PostMapping("/teachertask")
+    @PostMapping("/task")   // /task is better than /teachertask because api should be generic
     public Task addTask(@Valid @RequestBody Task task) throws SQLException {
         return taskDAO.addTask(task);
     }
     
-    @GetMapping("/teachertask")
+    @GetMapping("/task")
     public List<Task> getAllTasks() throws SQLException {
         return taskDAO.getAllTasks();
     }
     
-    @DeleteMapping("/teachertask/{task}")
+    @DeleteMapping("/task/{task}")
     public Task deleteTask(@PathVariable String task) throws SQLException {
         return taskDAO.deleteTask(new Task(task));
+    }
+    
+    @GetMapping("/studentdetails")
+    public List<StudentDetails> getStudentDetails() throws SQLException {
+        return taskDAO.getStudentDetails();
     }
 }

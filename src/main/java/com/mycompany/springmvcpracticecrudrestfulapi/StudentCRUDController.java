@@ -59,6 +59,26 @@ public class StudentCRUDController {
     }
 }
 
+/*
+
+Table1: student
+id     int          primary key
+name   varchar(20)  not null
+age    int          not null
+course int          not null
+
+Table2: task
+id    int          primary key    auto_increment
+name  varchar(40)  not null       unique{because user is entering the task name}
+
+Table3: studenttaskmapper
+sId  int     foreign key    reference student(id)  on delete cascade -> studentIdForeignKeyConstraint
+tId  int     foreign key    reference task(id)     on delete cascade -> taskIdForeignKeyCosntraint 
+primary key (studentId, taskId)
+
+*/
+
+
 // error handling 
 // response code - success(2-series), failure-error.
 // @valid, interceptor , json property

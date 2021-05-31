@@ -12,6 +12,7 @@
         <title>Students</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="${pageContext.request.contextPath}/resources/js/student.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/studentTasks.js"></script>
         <script src="${pageContext.request.contextPath}/resources/js/teacherTasks.js"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     </head>
@@ -34,13 +35,16 @@
         <input onclick="studentDeleteTask()" type="submit" value="remove task">
         <input onclick="studentShowTasks()" type="submit" value="show tasks">
         <br><br>
+        <b><div id="studentTaskResult"></div></b>
         <h1>Teachers</h1>
         <label> <b>Task</b> </label> <input type="text" id="teachersTask"><br><br>
         <input onclick="teacherAddTask()" type="submit" value="add task"> 
         <input onclick="teacherDeleteTask()" type="submit" value="remove task">
         <input onclick="teacherShowTasks()" type="submit" value="show tasks">
+        <input onclick="showStudentDetails()" type="submit" value="Show Student Details">
         <br><br>
         <b><div id="teacherCurrentResult"></div></b>
+        <br><br>
     </center>
     </body>
 </html>

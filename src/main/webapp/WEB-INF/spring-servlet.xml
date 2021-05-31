@@ -47,6 +47,10 @@
     <bean id="taskDAO" class="com.mycompany.springmvcpracticecrudrestfulapi.TaskDAO">    
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>  <!-- ref id can be used -->
     </bean>
+    
+    <bean id="studentTaskDAO" class="com.mycompany.springmvcpracticecrudrestfulapi.StudentTaskDAO">    
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>  <!-- ref id can be used -->
+    </bean>
  
     <mvc:annotation-driven />
     
