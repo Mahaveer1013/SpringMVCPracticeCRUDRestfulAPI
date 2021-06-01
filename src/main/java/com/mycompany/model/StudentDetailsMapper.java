@@ -13,19 +13,19 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author Thammana Srinivas
  */
-public class StudentDetailsMapper implements RowMapper<StudentDetails> {
+public class StudentDetailsMapper implements RowMapper<Student> {
 
     @Override
-    public StudentDetails mapRow(ResultSet rs, int i) throws SQLException {
-        StudentDetails sd = new StudentDetails();
+    public Student mapRow(ResultSet rs, int i) throws SQLException {
+        Student s = new Student();
      
-        sd.setSId(rs.getInt("sId"));
-        sd.setName(rs.getString("name"));
-        sd.setAge(rs.getInt("age"));
-        sd.setCourse(rs.getString("course"));
-        sd.setTask(rs.getString("task"));
+        s.setId(rs.getInt("sId"));
+        s.setName(rs.getString("name"));
+        s.setAge(rs.getInt("age"));
+        s.setCourse(rs.getString("course"));
+        s.setTaskDetails(new Task(rs.getString("task")));
         
-        return sd;
+        return s;
     }
     
 }

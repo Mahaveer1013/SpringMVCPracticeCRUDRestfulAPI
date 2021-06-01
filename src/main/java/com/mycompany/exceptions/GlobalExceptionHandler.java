@@ -40,21 +40,25 @@ public class GlobalExceptionHandler {
         int i = 0;
         for(ObjectError oE: br.getAllErrors()) {
             ++i;
-            if(i == 1) errorMessages.append("Error 1: ");
-            else errorMessages.append(",____Error "+i+": ");
-            errorMessages.append(oE.getDefaultMessage());
+            if(i==1) errorMessages.append(oE.getDefaultMessage());
+            else{
+                errorMessages.append(", ");
+                errorMessages.append(oE.getDefaultMessage());
+            }
         }
         return new ResponseEntity<>(new Reply(errorMessages.toString()),HttpStatus.BAD_REQUEST);
     }
     
     @ExceptionHandler(SQLException.class)
     public ResponseEntity<Reply> sqlProblem(SQLException sqlEx) {
-        return new ResponseEntity<>(new Reply(sqlEx.getMessage()),HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new Reply("Please Enter Valid Details"),HttpStatus.BAD_REQUEST);
+        // sqlEx.getDefault Message is not returned because architecture details are revealed
     }
     
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ResponseEntity<Reply> sqlProblem(EmptyResultDataAccessException erdaeEx) {   
-        return new ResponseEntity<>(new Reply(erdaeEx.getMessage()+" Or No record found"),HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new Reply("No record found"),HttpStatus.BAD_REQUEST);
+        // erdaeEx.getDefault Message is not returned because architecture details are revealed
     }
     
 }

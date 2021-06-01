@@ -28,6 +28,17 @@ public class Student {
     @Size(min=2,message="Minimum length of the course should atleast be 2")
     private String course;
 
+    @JsonProperty(value="task_details")
+    private Task taskDetails; // multiple
+
+    public Task getTaskDetails() {
+        return taskDetails;
+    }
+
+    public void setTaskDetails(Task taskDetails) {
+        this.taskDetails = taskDetails;
+    }
+
     public int getStudentId() {
         return studentId;
     }

@@ -30,9 +30,9 @@ public class StudentCRUDController {
     @Autowired
     private StudentDAO studentDAO;
     
-    @PostMapping("/student")
-    public Student insert(@Valid @RequestBody Student student) throws CustomException, SQLException{
-        return studentDAO.addStudent(student);
+    @PostMapping("/student/{id}")
+    public Student insert(@PathVariable int id, @Valid @RequestBody Student student) throws CustomException, SQLException{
+        return studentDAO.addStudent(id,student);
     }
     
     @GetMapping("/student/{id}")
@@ -56,6 +56,11 @@ public class StudentCRUDController {
     @PutMapping("/student/{id}")
     public Student update(@Valid @RequestBody Student student, @PathVariable int id) throws CustomException, SQLException {
         return studentDAO.updateStudent(student);
+    }
+    
+    @GetMapping("/studentdetails")
+    public List<Student> getStudentDetails() throws SQLException {
+        return studentDAO.getStudentDetails();
     }
 }
 

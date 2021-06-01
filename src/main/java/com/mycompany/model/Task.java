@@ -13,23 +13,33 @@ import javax.validation.constraints.Size;
  */
 public class Task {
     
-    @Size(min=4,message="Enter a task with atleast 4 characters")
-    private String task;
+    @Size(min=3,message="Enter a task with atleast 3 characters")
+    private String name;
     
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Task() {
         
     }
 
-    public Task(String task) {
-        this.task = task;
+    public Task(String name) {
+        this.name = name;
     }
 
-    public String getTask() {
-        return task;
+    public String getName() {
+        return name;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

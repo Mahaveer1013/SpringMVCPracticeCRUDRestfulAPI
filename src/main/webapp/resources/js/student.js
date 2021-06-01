@@ -11,7 +11,7 @@ function insert() {
     let age = $("#age").val();
     let course = $("#course").val();
     $.ajax({
-        url: "/SpringMVCPracticeCRUDRestfulAPI/student",
+        url: "/SpringMVCPracticeCRUDRestfulAPI/student/"+id,
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({"id":id,"name":name,"age":age,"course":course}),
@@ -93,5 +93,29 @@ function update() {
             console.log(data);
             $("#currentResult").html(data.responseJSON.message);
         }
+    });
+}
+
+
+function showStudentDetails() {
+    $.ajax({
+       url: "/SpringMVCPracticeCRUDRestfulAPI/studentdetails",
+       type: "GET",
+       success: function(data) {
+           if(data.length===0) $("#currentResult").html("No record found");
+           else {
+               let result = "Total Number Of Records Are: " + data.length;
+               result+="<br><table><tr><th>Id</th><th>Name</th><th>Age</th><th>Course</th><th>Task</th></tr>";
+               for(let key in data) {
+                   result+="<tr><td>"+data[key].id+"</td><td>"+data[key].name+"</td><td>"+data[key].age+"</td><td>"+data[key].course+"</td><td>"+data[key].task_details.name+"</td></tr>";
+                   // taskdetails
+               }
+               result+="</table>";
+               $("#currentResult").html(result);
+           }
+       },
+       error: function(error) {
+           $("#currentResult").html(error.responseJSON.message);
+       }
     });
 }

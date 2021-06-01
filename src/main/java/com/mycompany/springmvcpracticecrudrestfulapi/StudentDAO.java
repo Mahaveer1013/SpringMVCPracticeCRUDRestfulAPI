@@ -6,6 +6,7 @@
 package com.mycompany.springmvcpracticecrudrestfulapi;
 
 import com.mycompany.model.Student;
+import com.mycompany.model.StudentDetailsMapper;
 import com.mycompany.model.StudentMapper;
 import java.sql.SQLException;
 import java.util.List;
@@ -37,10 +38,9 @@ public class StudentDAO implements StudentDAOInterface {
     }
     
     @Override
-    public Student addStudent(Student student) throws SQLException {
-        int theStudentId = student.getStudentId();
+    public Student addStudent(int id, Student student) throws SQLException {
         String sql = "insert into student values(?,?,?,?);";
-        jdbcTemplate.update(sql,theStudentId,student.getName(),student.getAge(),student.getCourse());  // returns number of rows affected
+        jdbcTemplate.update(sql,id,student.getName(),student.getAge(),student.getCourse());  // returns number of rows affected
         return student;
     }
     
@@ -67,5 +67,12 @@ public class StudentDAO implements StudentDAOInterface {
         List<Student> students = jdbcTemplate.query(sql, new StudentMapper());
         return students;
     } 
+
+    public List<Student> getStudentDetails() throws SQLException {
+        String sql = "select s.id as sId,s.name,s.age,s.course,t.name as task from student s inner join studenttaskmapper stm on s.id=stm.sId inner join task t on stm.tId=t.id";
+        List<Student> studentDetails = jdbcTemplate.query(sql, new StudentDetailsMapper());
+        return studentDetails;
+    }
+    
     
 }

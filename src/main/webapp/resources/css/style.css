@@ -11,12 +11,19 @@ and open the template in the editor.
 body {
     background-color: #F3913A; 
     color: #000000;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 table, th, td {
   border: 1px solid black;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 th, td {
   padding: 6px;
+}
+
+button, input {
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
 }

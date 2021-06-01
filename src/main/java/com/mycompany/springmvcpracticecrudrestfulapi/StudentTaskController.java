@@ -5,6 +5,7 @@
  */
 package com.mycompany.springmvcpracticecrudrestfulapi;
 
+import com.mycompany.model.Student;
 import com.mycompany.model.StudentTask;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,9 +30,9 @@ public class StudentTaskController {
     @Autowired
     private StudentTaskDAO studentTaskDAO;
     
-    @PostMapping("/task")
-    public StudentTask addStudentTask(@Valid @RequestBody StudentTask studentTask) throws SQLException {
-        return studentTaskDAO.addStudentTask(studentTask);
+    @PostMapping("/{id}/task")  // /id
+    public StudentTask addStudentTask(@PathVariable int id, @Valid @RequestBody StudentTask studentTask) throws SQLException {
+        return studentTaskDAO.addStudentTask(id,studentTask);
     }
     
     @DeleteMapping("/{id}/task/{task}")
@@ -43,7 +44,7 @@ public class StudentTaskController {
     } 
     
     @GetMapping("/{id}/task")
-    public List<StudentTask> getStudentTasks(@PathVariable int id) throws SQLException {
+    public List<Student> getStudentTasks(@PathVariable int id) throws SQLException {
         return studentTaskDAO.getStudentTasks(id);
     }
     

@@ -17,7 +17,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 public interface StudentDAOInterface {
     Student getStudent(int id) throws EmptyResultDataAccessException;
     
-    Student addStudent(Student student) throws SQLException;
+    Student addStudent(int id, Student student) throws SQLException;
     
     Student updateStudent(Student student) throws SQLException;
     
