@@ -19,7 +19,7 @@ public class StudentTaskMapper implements RowMapper<Student> {
     public Student mapRow(ResultSet rs, int i) throws SQLException {
         Student s = new Student();
         
-        s.setId(rs.getInt("id"));
+        s.setStudentId(rs.getInt("id"));
         s.setTaskDetails(new Task(rs.getString("name")));
         
         return s;

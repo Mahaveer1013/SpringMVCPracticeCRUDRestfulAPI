@@ -18,7 +18,7 @@ public class StudentMapper implements RowMapper<Student> {
     @Override
     public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
         Student student = new Student();
-        student.setId(rs.getInt("id"));
+        student.setStudentId(rs.getInt("id"));
         student.setName(rs.getString("name"));
         student.setAge(rs.getInt("age"));
         student.setCourse(rs.getString("course"));

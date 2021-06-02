@@ -5,6 +5,7 @@
  */
 package com.mycompany.springmvcpracticecrudrestfulapi;
  
+import com.mycompany.exceptions.CustomException;
 import com.mycompany.model.Student;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +18,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 public interface StudentDAOInterface {
     Student getStudent(int id) throws EmptyResultDataAccessException;
     
-    Student addStudent(int id, Student student) throws SQLException;
+    Student addStudent(int id, Student student) throws SQLException, CustomException;
     
     Student updateStudent(Student student) throws SQLException;
     

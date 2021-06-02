@@ -5,6 +5,7 @@
  */
 package com.mycompany.springmvcpracticecrudrestfulapi;
 
+import com.mycompany.constraintgroups.StudentDetails;
 import com.mycompany.exceptions.CustomException;
 import com.mycompany.model.Student;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +33,7 @@ public class StudentCRUDController {
     private StudentDAO studentDAO;
     
     @PostMapping("/student/{id}")
-    public Student insert(@PathVariable int id, @Valid @RequestBody Student student) throws CustomException, SQLException{
+    public Student insert(@PathVariable int id, @Validated(StudentDetails.class) @RequestBody Student student) throws CustomException, SQLException{
         return studentDAO.addStudent(id,student);
     }
     
@@ -54,7 +56,7 @@ public class StudentCRUDController {
     }
     
     @PutMapping("/student/{id}")
-    public Student update(@Valid @RequestBody Student student, @PathVariable int id) throws CustomException, SQLException {
+    public Student update(@Validated(StudentDetails.class) @RequestBody Student student, @PathVariable int id) throws CustomException, SQLException {
         return studentDAO.updateStudent(student);
     }
     

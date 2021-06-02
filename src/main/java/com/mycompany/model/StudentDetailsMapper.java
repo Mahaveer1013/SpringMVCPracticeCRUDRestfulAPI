@@ -19,7 +19,7 @@ public class StudentDetailsMapper implements RowMapper<Student> {
     public Student mapRow(ResultSet rs, int i) throws SQLException {
         Student s = new Student();
      
-        s.setId(rs.getInt("sId"));
+        s.setStudentId(rs.getInt("sId"));
         s.setName(rs.getString("name"));
         s.setAge(rs.getInt("age"));
         s.setCourse(rs.getString("course"));

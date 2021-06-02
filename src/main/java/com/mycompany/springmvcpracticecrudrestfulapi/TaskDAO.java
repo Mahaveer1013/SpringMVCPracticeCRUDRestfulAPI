@@ -5,6 +5,7 @@
  */
 package com.mycompany.springmvcpracticecrudrestfulapi;
 
+import com.mycompany.exceptions.CustomException;
 import com.mycompany.model.Task;
 import com.mycompany.model.TaskMapper;
 import java.sql.SQLException;
@@ -27,10 +28,11 @@ public class TaskDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
     
-    public Task addTask(String task) throws SQLException {
+    public Task addTask(String task) throws SQLException, CustomException {
         String sql = "insert into task (name) values(?)";
         // custom validation
-        jdbcTemplate.update(sql,task);
+        int numberOfRecordsModified = jdbcTemplate.update(sql,task);
+        if(numberOfRecordsModified == 0)  throw new CustomException("Enter Valid Details");
         return new Task(task);
     }
     

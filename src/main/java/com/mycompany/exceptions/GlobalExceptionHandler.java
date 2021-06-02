@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SQLException.class)
     public ResponseEntity<Reply> sqlProblem(SQLException sqlEx) {
         return new ResponseEntity<>(new Reply("Please Enter Valid Details"),HttpStatus.BAD_REQUEST);
-        // sqlEx.getDefault Message is not returned because architecture details are revealed
+        // sqlEx.getMessage Message is not returned because architecture details are revealed
     }
     
     @ExceptionHandler(EmptyResultDataAccessException.class)

@@ -5,6 +5,7 @@
  */
 package com.mycompany.springmvcpracticecrudrestfulapi;
 
+import com.mycompany.exceptions.CustomException;
 import com.mycompany.model.Student;
 import com.mycompany.model.StudentDetailsMapper;
 import com.mycompany.model.StudentMapper;
@@ -38,9 +39,10 @@ public class StudentDAO implements StudentDAOInterface {
     }
     
     @Override
-    public Student addStudent(int id, Student student) throws SQLException {
+    public Student addStudent(int id, Student student) throws SQLException, CustomException {
         String sql = "insert into student values(?,?,?,?);";
-        jdbcTemplate.update(sql,id,student.getName(),student.getAge(),student.getCourse());  // returns number of rows affected
+        int numberOfRowsEffected = jdbcTemplate.update(sql,id,student.getName(),student.getAge(),student.getCourse());  // returns number of rows affected
+        if(numberOfRowsEffected == 0) throw new CustomException("Enter Valid Details");
         return student;
     }
     

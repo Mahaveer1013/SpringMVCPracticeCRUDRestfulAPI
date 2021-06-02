@@ -5,6 +5,7 @@
  */
 package com.mycompany.model;
 
+import com.mycompany.constraintgroups.StudentTaskDetails;
 import javax.validation.constraints.Size;
 
 /**
@@ -13,7 +14,7 @@ import javax.validation.constraints.Size;
  */
 public class Task {
     
-    @Size(min=3,message="Enter a task with atleast 3 characters")
+    @Size(min=3,message="Enter a task with atleast 3 characters",groups=StudentTaskDetails.class)
     private String name;
     
     private int id;
