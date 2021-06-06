@@ -9,7 +9,6 @@ function insert() {
     if(id === "") id=0;
     let name = $("#name").val();
     let age = $("#age").val();
-    if(age === "") age=0;
     let course = $("#course").val();
     $.ajax({
         url: "/SpringMVCPracticeCRUDRestfulAPI/student/"+id,
@@ -82,7 +81,6 @@ function update() {
     if(id === "") id=0;
     let name = $("#name").val();
     let age = $("#age").val();
-    if(age === "") age=0;
     let course = $("#course").val();
     $.ajax({
        url: "/SpringMVCPracticeCRUDRestfulAPI/student/"+id,

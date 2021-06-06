@@ -43,7 +43,7 @@ public class StudentDeserializer extends StdDeserializer<Student> {
         if(jnName!=null)
             name = jnName.asText();
         if(jnAge!=null)
-            age = Integer.parseInt(jnAge.asText()); //doubt - IntNode not working
+            age = Integer.parseInt(jnAge.asText().equals("")?"0":jnAge.asText()); //doubt - IntNode not working
         if(jnCourse!=null)
             course = jnCourse.asText();
         if(jnTaskName!=null)
