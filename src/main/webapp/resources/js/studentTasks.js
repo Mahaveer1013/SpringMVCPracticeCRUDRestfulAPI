@@ -16,9 +16,10 @@ function studentAddTask() {
        url: "/SpringMVCPracticeCRUDRestfulAPI/student/"+id+"/task",
        type: "POST",
        contentType: "application/json",
-       data: JSON.stringify({"id":id,"task_details":{"name":task}}),
+       data: JSON.stringify({"id":id,"task_name":task}),
        success: function(data) {
-           $("#studentTaskResult").html("Id: "+data.id+"<br>Task: "+data.task_details.name);
+           console.log(data);
+           $("#studentTaskResult").html("Id: "+data.id+"<br>Task: "+data.task_name);
        },
        error: function(error) {
            $("#studentTaskResult").html("Please enter a valid StudentId/task Name only ONCE<br>");
@@ -36,7 +37,7 @@ function studentDeleteTask() {
        url: "/SpringMVCPracticeCRUDRestfulAPI/student/"+id+"/task/"+task,
        type: "DELETE",
        success: function(data) {
-           $("#studentTaskResult").html("Id: "+data.id+"<br>Task: "+data.task_details.name);
+           $("#studentTaskResult").html("Id: "+data.id+"<br>Task: "+data.task_name);
        },
        error: function(error) {
            $("#studentTaskResult").html(error.responseJSON.message);
@@ -56,7 +57,7 @@ function studentShowTasks() {
            else {
                $("#studentTaskResult").html("Total number of tasks for student "+id+" are: "+data.length);
                 for(let key in data) {
-                    $("#studentTaskResult").append("<br>"+data[key].task_details.name); 
+                    $("#studentTaskResult").append("<br>"+data[key].task_name); 
                 }
            }
        },

@@ -6,8 +6,12 @@
 package com.mycompany.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.mycompany.constraintgroups.StudentDetails;
 import com.mycompany.constraintgroups.StudentTaskDetails;
+import com.mycompany.customdeserializer.StudentDeserializer;
+import com.mycompany.customserializer.StudentSerializer;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -17,7 +21,20 @@ import javax.validation.constraints.Size;
  *
  * @author Thammana Srinivas
  */
+@JsonSerialize(using=StudentSerializer.class)
+@JsonDeserialize(using=StudentDeserializer.class)
 public class Student {
+
+    public Student(int studentId, String name, int age, String course, Task taskDetails) {
+        this.studentId = studentId;
+        this.name = name;
+        this.age = age;
+        this.course = course;
+        this.taskDetails = taskDetails;
+    }
+
+    public Student() {
+    }
     
     @JsonProperty(value="id")
     @Min(value=1,message="Student Id must be atleast 1",groups={StudentDetails.class,StudentTaskDetails.class})

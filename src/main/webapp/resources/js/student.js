@@ -9,6 +9,7 @@ function insert() {
     if(id === "") id=0;
     let name = $("#name").val();
     let age = $("#age").val();
+    if(age === "") age=0;
     let course = $("#course").val();
     $.ajax({
         url: "/SpringMVCPracticeCRUDRestfulAPI/student/"+id,
@@ -47,6 +48,7 @@ function selectAll() {
         url: "/SpringMVCPracticeCRUDRestfulAPI/student",
         type: "GET",
         success: function(data) {
+            console.log(data);
             if(data.length === 0) {
                 $("#currentResult").html("No records found");
             } else {
@@ -80,6 +82,7 @@ function update() {
     if(id === "") id=0;
     let name = $("#name").val();
     let age = $("#age").val();
+    if(age === "") age=0;
     let course = $("#course").val();
     $.ajax({
        url: "/SpringMVCPracticeCRUDRestfulAPI/student/"+id,
@@ -107,7 +110,7 @@ function showStudentDetails() {
                let result = "Total Number Of Records Are: " + data.length;
                result+="<br><table><tr><th>Id</th><th>Name</th><th>Age</th><th>Course</th><th>Task</th></tr>";
                for(let key in data) {
-                   result+="<tr><td>"+data[key].id+"</td><td>"+data[key].name+"</td><td>"+data[key].age+"</td><td>"+data[key].course+"</td><td>"+data[key].task_details.name+"</td></tr>";
+                   result+="<tr><td>"+data[key].id+"</td><td>"+data[key].name+"</td><td>"+data[key].age+"</td><td>"+data[key].course+"</td><td>"+data[key].task_name+"</td></tr>";
                    // taskdetails
                }
                result+="</table>";
